@@ -10,7 +10,7 @@
 </center> -->
 
 <?php 
-$url="session.php";
+$url="buycherry.php";
 
 header("Location: $url");
 ?>

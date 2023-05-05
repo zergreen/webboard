@@ -9,12 +9,23 @@
     <title>Webboard</title>
 </head>
 
+<style>
+    a { color: inherit; } 
+</style>
+
 <body>
     <div class="container">
         <!-- As a link -->
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#">Home</a>
+                <?php 
+                session_start();
+                if(isset($_SESSION['username']) != null){
+                    echo "<a href='profile.php'>Profile</a>";
+                }else{
+                    echo "Login";
+                }?>
             </div>
         </nav>
 
