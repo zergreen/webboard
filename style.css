@@ -1,0 +1,35 @@
+div {
+    /* border-style: none;
+    border-color: black; */
+
+    margin: 1%;
+}
+
+span {
+    display: inline-block;
+    margin-left: 40px;
+}
+
+#form1 {
+   margin: 1% 1% 5% 1%;
+
+   border-style: none;
+   /* border-color: green; */
+}
+
+.box-black {
+    border-style: solid;
+    border-color: black;
+}
+
+#sign {
+    /* color: blue;
+    background-color: aqua; */
+}
+
+div #logo {
+    text-align: center;
+}
+#logo img {
+    width:10%;
+}

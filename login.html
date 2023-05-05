@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+
+      html {
+        display: table;
+        margin: auto;
+      }
+
+      body {
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+      body {
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.5),
+            rgba(255, 255, 255, 0.5)
+          ),
+          url("https://thumbs.gfycat.com/AggravatingSparklingHypsilophodon-max-1mb.gif");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+      }
+    </style>
+    <script>
+      function seePassword() {
+        let x = document.getElementById("my_password");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <form method="post" action="authen.php">
+      <fieldset style="background-color: #eef1ff">
+        <legend><h1>Login:</h1></legend>
+        Username <br />
+        <input type="text" name="username" value="admin" /> <br />
+        <br />
+        Password <br />
+        <input id="my_password" type="password" name="pwd" value="123456" />
+        <br />
+        <input type="checkbox" onclick="seePassword()" />Show Password <br />
+        <br />
+
+        <center><input type="submit" value="Login" /></center>
+      </fieldset>
+    </form>
+  </body>
+</html>
