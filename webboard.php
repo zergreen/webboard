@@ -60,7 +60,9 @@
                         echo '<td>' . $rowUserA['username'] . '</td>';
                         echo '<td>' . $rowPost['Title'] . '</td>';
                         echo '<td>' . $rowPost['About'] . '</td>';
-                        echo '<input type="hidden" name="ID" value="' . $rowPost['ID'] . '">';
+                        echo '<input type="hidden" name="IDPost" value="' . $rowPost['ID'] . '">';
+                        echo '<input type="hidden" name="Title" value="' . $rowPost['Title'] . '">';
+                        echo '<input type="hidden" name="About" value="' . $rowPost['About'] . '">';
                         echo '<td><input class="btnForm" type="submit" value="Comment"></td>';
                         echo '</form>';
                         echo "</tr>";

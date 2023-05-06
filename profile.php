@@ -5,14 +5,14 @@
         include "conn.php";
 
         $sql = "SELECT * FROM user_profiles where (id=$_SESSION[id])";
-        echo $sql;
+        // echo $sql;
         $result = $conn->query($sql);
 
         $one = mysqli_fetch_array($result);
         $_SESSION['fullname'] = $one['fullname'];
-        echo $_SESSION['fullname'];
+        // echo $_SESSION['fullname'];
         $_SESSION['img'] = $one['img'];
-        echo $_SESSION['img'];
+        // echo $_SESSION['img'];
 
         $quote = $one['quote'];
         $_SESSION['email'] = $one['email'];
@@ -22,14 +22,12 @@
 
         $job = "fullstack DEV";
 
-
-
         $sql = "SELECT * FROM post where (IDUser=$_SESSION[id])";
-        echo $sql;
+        // echo $sql;
         $resultPost = $conn->query($sql);
 
     } else {
-        echo "Dont have username";
+        // echo "Dont have username";
     } ?>
 
 <!DOCTYPE html>
@@ -124,7 +122,7 @@
                 if (isset($_SESSION['username']) != null) {
                    echo $_SESSION['username'];
                 } else {
-                    echo "Login";
+                    echo "<a href=login.html>Login</a>";
                 } ?>
             </div>
         </nav>
@@ -263,7 +261,7 @@
                     <!-- Copyright -->
                     <div class="text-center p-3" style="background-color: #2C2A49;">
                         © 2020 Copyright:
-                        <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+                        <a class="text-white" href="https://mdbootstrap.com/"> powerpuffboy.uk</a>
                     </div>
                     <!-- Copyright -->
                 </footer>
