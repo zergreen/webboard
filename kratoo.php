@@ -66,7 +66,7 @@
         <!-- As a link -->
         <nav class="navbar" >
             <div class="container-fluid">
-                <a class="navbar-brand" href="buycherry.php">Navbar</a>
+                <a class="navbar-brand" href="webboard.php">Navbar</a>
                 <?php 
                 session_start();
                 if(isset($_SESSION['username']) != null){

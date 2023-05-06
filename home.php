@@ -5,7 +5,7 @@
     <body >
     <font color=red size=7><h1>WELCUM to Homepage</h1></font>
 <?php
-$newURL = "buycherry.php";
+$newURL = "webboard.php";
 header("Refresh:3; url=$newURL");
 ?>
     </body>
