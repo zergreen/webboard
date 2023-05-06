@@ -9,7 +9,10 @@ echo $img;
 
 $sql = "UPDATE user_profiles SET fullname=$fullname , img=$img WHERE (id=$_SESSION[id])";
 
-mysqli_query($conn,$sql);
-?>
+$stmt = $conn->prepare("UPDATE user_profiles SET fullname=? , img=? WHERE (id=?)");
+$stmt->bind_param("sss",$fullname,$img,$_SESSION['id']);
+$stmt->execute();
 
-<a href="location.back()">Back</a>
+// mysqli_query($conn,$sql);
+
+?>

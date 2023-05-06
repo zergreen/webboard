@@ -10,7 +10,7 @@
 </center> -->
 
 <?php 
-$url="buycherry.php";
+$url="webboard.php";
 
 header("Location: $url");
 ?>

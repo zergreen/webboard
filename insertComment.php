@@ -19,11 +19,23 @@
             // uncomment will not security
             // $Comment = htmlspecialchars($Comment);
 
-            $insertComment = "INSERT INTO comment (IDPost, IDUser, comment) VALUES ('$IDPost', '$IDUser', '$Comment')";
-            $conn->query($insertComment);
-            echo $insertComment;
-            header("Location: kratoo.php?IDUser=$IDUser&IDPost=$IDPost");
-            $connect->close();
+            // $insertComment = "INSERT INTO comment (IDPost, IDUser, comment) VALUES ('$IDPost', '$IDUser', '$Comment')";
+            // $conn->query($insertComment);
+            // echo $insertComment;
+            // header("Location: kratoo.php?IDUser=$IDUser&IDPost=$IDPost");
+            // $connect->close();
+
+           
+
+            $stmt = $conn->prepare("INSERT INTO comment (IDPost, IDUser, comment) VALUES (?, ?, ?)");
+            // echo $stmt;
+            $stmt->bind_param("sss",$IDPost,$IDUser,$Comment);
+
+            $stmt->execute();
+            // echo $stmt;
+            // $stmt->execute();
+            // header("Location: kratoo.php?IDUser=$IDUser&IDPost=$IDPost");
+
         ?>  
     </body>
 
