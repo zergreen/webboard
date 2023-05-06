@@ -18,7 +18,7 @@
     <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Navbar</a>
-                <a class="navbar-brand" href="#"><?php echo $_SESSION['fullname'] ?></a>
+                <a class="navbar-brand" href="#"><?php echo $_SESSION['username'] ?></a>
             </div>
         </nav>
 

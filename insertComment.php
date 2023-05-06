@@ -9,11 +9,16 @@
     </head>
 
     <body>
-        <?php 
+        <?php
+            
             include('conn.php');
             $IDUser = $_POST['IDUser'];
             $IDPost = $_POST['IDPost'];
             $Comment = $_POST['comment'];
+
+            // uncomment will not security
+            // $Comment = htmlspecialchars($Comment);
+
             $insertComment = "INSERT INTO comment (IDPost, IDUser, comment) VALUES ('$IDPost', '$IDUser', '$Comment')";
             $conn->query($insertComment);
             echo $insertComment;

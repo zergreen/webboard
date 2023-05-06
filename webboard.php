@@ -28,7 +28,7 @@
                 <a class="navbar-brand" href="webboard.php">Navbar</a>
                 <?php 
                 if(isset($_SESSION['username']) != null){
-                    echo "<a href=profile.php>$_SESSION[username]</a>";
+                    echo "<a href=profile.php?qID=$_SESSION[id]>$_SESSION[username]</a>";
                 }else{
                     echo "Login";
                 }?>
@@ -57,7 +57,7 @@
                         echo "<tr>";
                         echo '<form method="get" action="kratoo.php">';
                         echo '<td>' . $rowPost['ID'] . '</td>';
-                        echo '<td>' . $rowUserA['username'] . '</td>';
+                        echo '<td>' . "<a href=profile.php?qID=$rowUserA[id]>$rowUserA[username]</a>" . '</td>';
                         echo '<td>' . $rowPost['Title'] . '</td>';
                         echo '<td>' . $rowPost['About'] . '</td>';
                         echo '<input type="hidden" name="IDPost" value="' . $rowPost['ID'] . '">';

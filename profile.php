@@ -2,9 +2,12 @@
     session_start();
     if (isset($_SESSION['username']) != null) {
 
+        
         include "conn.php";
 
-        $sql = "SELECT * FROM user_profiles where (id=$_SESSION[id])";
+        $whoID = $_GET['qID'];
+
+        $sql = "SELECT * FROM user_profiles where (id=$whoID)";
         // echo $sql;
         $result = $conn->query($sql);
 
@@ -22,7 +25,7 @@
 
         $job = "fullstack DEV";
 
-        $sql = "SELECT * FROM post where (IDUser=$_SESSION[id])";
+        $sql = "SELECT * FROM post where (IDUser=$whoID)";
         // echo $sql;
         $resultPost = $conn->query($sql);
 
@@ -39,9 +42,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <title>Kratoo</title>
+
+    <?php // header("Content-Security-Policy: default-src 'self' *.jsdelivr.net; img-src *;") ?> 
 </head>
 
 <style>
+    a {
+        color: inherit;
+    }
     #other-box {
         background-color: #222244;
     }
@@ -117,10 +125,12 @@
         <!-- As a link -->
         <nav class="navbar">
             <div class="container-fluid">
-                <a class="navbar-brand" href="buycherry.php">Home</a>
+                <a class="navbar-brand" href="webboard.php">Home</a>
                 <?php
                 if (isset($_SESSION['username']) != null) {
                    echo $_SESSION['username'];
+                   echo "&nbsp;";
+                   echo "<a href=login.html>Logout</a>";
                 } else {
                     echo "<a href=login.html>Login</a>";
                 } ?>
@@ -131,7 +141,7 @@
 
         <div class="box-small d-flex justify-content-between" id="primary-topic" style="color: white">
             <h6>สมาชิกหมายเลข <?php echo $_SESSION['id'] ?></h6>
-            <h6>Edit</h6>
+            <h6><a href="edit-profile.php">Edit</a></h6>
         </div>
         
         <div class="box-small" id="primary-topic" style="color: white">
