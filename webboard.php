@@ -1,7 +1,10 @@
 <?php 
     include('conn.php');
     session_start();
-    $IDUser = $_SESSION['id'];
+    
+    if(isset($_SESSION['id'])){
+        $IDUser = $_SESSION['id'];
+    }
     // echo $IDUser;
     $qPost = "SELECT * FROM post";
     $resultPost = $conn->query($qPost);
@@ -30,7 +33,7 @@
                 if(isset($_SESSION['username']) != null){
                     echo "<a href=profile.php?qID=$_SESSION[id]>$_SESSION[username]</a>";
                 }else{
-                    echo "Login";
+                    echo "<a href=login.html>Login</a>";
                 }?>
             </div>
         </nav>
